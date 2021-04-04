@@ -21,7 +21,7 @@ form.addEventListener("submit", async (e) => {
       },
       body: JSON.stringify({
         caseNum: caseNum.value,
-        plantiffName: plaintiffName.value,
+        plaintiffName: plaintiffName.value,
         plaintiffPhone: plaintiffPhone.value,
         defendantName: defendantName.value,
         defendantPhone: defendantPhone.value,

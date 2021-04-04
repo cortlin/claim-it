@@ -17,6 +17,7 @@
         to complete to add the necessary information for generating a settlement
         agreement.
       </p>
+      <p><strong>NOTE ABOUT PHONE NUMBER:</strong> In this initial example, phone number validation has not been implemented. please use the format <strong>5556667777</strong> for the form to function properly.</strong></p>
     </header>
 
     <main>
@@ -32,19 +33,25 @@
           <input type="datetime-local" name="court-date" id="court-date" />
 
           <label for="plaintiff-name"> Plaintiff Name: </label>
-          <input type="text" name="name" />
+          <input type="text" name="name" required />
 
           <label for="plaintiff-phone"> Plaintiff Phone Number: </label>
-          <input type="text" name="phone" placeholder="ex: 5556667777" />
+          <input
+            type="text"
+            name="phone"
+            required
+            placeholder="FORMAT: 5556667777"
+          />
 
           <label for="defendant-name">Defendant Name: </label>
-          <input type="text" name="defendant-name" />
+          <input type="text" required name="defendant-name" />
 
           <label for="defendant-phone">Defendant Phone Number:</label>
           <input
             type="text"
             name="defendant-phone"
-            placeholder="ex: 5556667777"
+            placeholder="FORMAT: 5556667777"
+            required
           />
 
           <button type="submit">&plus; Create Settlement</button>
