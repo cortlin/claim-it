@@ -1,10 +1,21 @@
-body {
+:root {
+  --color-primary: #1e3d59;
+  --color-white: #fff;
+  --color-dark-gray: #4f4f4f;
+  --color-light-gray: #f4f4f4;
+}
+
+html {
   margin: 0;
   box-sizing: border-box;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #f5f0e1;
+  background-color: var(--color-light-gray);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  text-align: center;
 }
 
 main {
@@ -13,23 +24,46 @@ main {
   align-items: center;
 }
 
-section {
+.modal {
   width: 500px;
   background: #fff;
-  padding: 20px 30px;
   border-radius: 10px;
 }
 
-input {
-  display: block;
+.modal-header {
+  background-color: var(--color-primary);
   margin-bottom: 20px;
-  padding: 5px 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+  color: var(--color-white);
+  padding: 1rem 3rem;
+  margin: 0;
+  font-style: italic;
+}
+
+form {
+  margin: 0 3rem 3rem 3rem;
+}
+
+label {
+  color: var(--color-dark-gray);
+}
+
+input {
+  box-sizing: border-box;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
   border: 1px solid;
   border-radius: 3px;
+  width: 100%;
 }
 
 button {
-  background-color: #1e3d59;
+  background-color: var(--color-primary);
   color: #fff;
   font-size: 1rem;
   padding: 5px 20px;

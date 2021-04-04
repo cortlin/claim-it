@@ -1,52 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title>Claim It!</title>
-</head>
-<body>
-  <header>
-    <h1>Claim It!</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Claim It!</title>
+  </head>
+  <body>
+    <header>
+      <h1>Claim It!</h1>
+      <p>
+        The website was built to represent the user flow of the court user when
+        creating a new quick claim settlement. Filling out the below fields will
+        trigger a series of SMS messages that act as a survey for the Plaintiff
+        to complete to add the necessary information for generating a settlement
+        agreement.
+      </p>
+    </header>
 
-  <main>
-    <section>
-      <form id="create-settlement">
-        <label for="plaintiff-name">
-          Plaintiff Name:
-        </label>
-        <input type="text" name='name'>
-        <label for="plaintiff-phone">
-          Plaintiff Phone Number: 
-        </label>
-        <input type="text" name='phone'>
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-  </main>
+    <main>
+      <section class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Create New Settlement</h3>
+        </div>
+        <form id="create-settlement">
+          <label for="case-number">Case Number</label>
+          <input type="text" name="case-number" />
 
-  <script>
-    const form = document.querySelector('#create-settlement');
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const [name, phone] = e.target;
-      const results = await fetch('http://localhost:3000/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: name.value,
-          phoneNum: phone.value
-        })
-      })
-      console.log(await results);
+          <label for="court-date">Court Date</label>
+          <input type="datetime-local" name="court-date" id="court-date" />
 
-    })
-  </script>
-</body>
+          <label for="plaintiff-name"> Plaintiff Name: </label>
+          <input type="text" name="name" />
+
+          <label for="plaintiff-phone"> Plaintiff Phone Number: </label>
+          <input type="text" name="phone" placeholder="ex: 5556667777" />
+
+          <label for="defendant-name">Defendant Name: </label>
+          <input type="text" name="defendant-name" />
+
+          <label for="defendant-phone">Defendant Phone Number:</label>
+          <input
+            type="text"
+            name="defendant-phone"
+            placeholder="ex: 5556667777"
+          />
+
+          <button type="submit">&plus; Create Settlement</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const form = document.querySelector("#create-settlement");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const [
+          caseNum,
+          courtDateTime,
+          plaintiffName,
+          plaintiffPhone,
+          defendantName,
+          defendantPhone,
+        ] = e.target;
+
+        const [courtDate, courtTime] = courtDateTime.value.split("T");
+
+        const results = await fetch("http://localhost:3000/api", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            caseNum: caseNum.value,
+            plantiffName: plaintiffName.value,
+            plaintiffPhone: plaintiffPhone.value,
+            defendantName: defendantName.value,
+            defendantPhone: defendantPhone.value,
+          }),
+        });
+        console.log(await results);
+      });
+    </script>
+  </body>
 </html>
