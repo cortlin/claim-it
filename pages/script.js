@@ -28,5 +28,7 @@ form.addEventListener("submit", async (e) => {
       }),
     }
   );
-  console.log(await results);
+  
+  e.target.reset();
+  alert("Your settlement has been successfully created!")
 });
