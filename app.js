@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const indexRouter = require("./routes/index");
 const apiRouter = require("./api/index");
+const brightlineApi = require("./api/brightline");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "pages")));
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+app.use("/api/brightline", brightlineApi);
 
 app.get("/settlement", (req, res) => {
   const data =fs.readFileSync('./contract.pdf');
